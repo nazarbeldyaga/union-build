@@ -1,4 +1,9 @@
-function renderChart(chartData) {
+function renderTransfersChart(canvasId, chartData) {
+    if (!chartData || chartData.length === 0) {
+        console.warn('No data provided for transfers chart');
+        return;
+    }
+
     const reversedData = chartData.slice().reverse();
 
     const cumulativeData = reversedData.map((item, index) => {
@@ -9,14 +14,14 @@ function renderChart(chartData) {
         };
     });
 
-    const ctx = document.getElementById('transferCountChart').getContext('2d');
+    const ctx = document.getElementById(canvasId).getContext('2d');
     new Chart(ctx, {
         type: 'line',
         data: {
             labels: cumulativeData.map(item => item.date),
             datasets: [
                 {
-                    label: 'Daily Transactions',
+                    label: 'Daily Transfers',
                     data: cumulativeData.map(item => item.count),
                     fill: false,
                     borderColor: 'rgba(75, 192, 192, 1)',
@@ -34,14 +39,14 @@ function renderChart(chartData) {
         options: {
             scales: {
                 x: {
-                    title: { display: true, text: 'Date' },
+                    title: { display: true, text: 'Дата' },
                     ticks: {
                         maxRotation: 45,
                         minRotation: 45
                     }
                 },
                 y: {
-                    title: { display: true, text: 'Number of Transactions' },
+                    title: { display: true, text: 'Количество трансферов' },
                     beginAtZero: true
                 }
             },

@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const { getDailyTransfersData } = require('../controllers/transfersController');
+const { getControllerData } = require('../controllers/controller');
 
 /* GET home page with transfer count data */
-router.get('/', getDailyTransfersData);
+router.get('/', getControllerData);
 
 module.exports = router;

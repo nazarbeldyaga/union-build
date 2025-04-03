@@ -1,23 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Union Build</title>
   <link rel="icon" href="/images/icon.ico">
   <link rel="stylesheet" href="/stylesheets/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h2>Daily Transfers and Cumulative Total</h2>
-<canvas id="transferCountChart" width="800" height="400"></canvas>
+
+<!-- Кнопка смены темы -->
+<button id="themeToggle" class="theme-toggle">🌙</button>
+
+<!-- Контейнер для графиков -->
+<div class="charts-container">
+  <h2>Daily Transfers and Cumulative Total</h2>
+  <canvas id="chart1"></canvas>
+  <h2>Daily GMP and Cumulative Total</h2>
+  <canvas id="chart2"></canvas>
+</div>
 
 <script>
-  // Передаем данные из сервера в глобальную переменную
+  // Данные из сервера
   const chartData = <%- chartData %>;
 </script>
 <script src="/javascripts/transferCountChart.js"></script>
+<script src="/javascripts/walletsCountChart.js"></script>
+<script src="/javascripts/packetsCountChart.js"></script>
+<script src="/javascripts/themeToggle.js"></script>
 <script>
-  // Вызываем функцию из chart.js после загрузки скрипта
-  renderChart(chartData);
+  // Рендерим графики
+  renderTransfersChart("chart1", chartData.transfers);
+  // Если renderWalletsChart еще не реализован, закомментируй или добавь заглушку
+  renderPacketsChart("chart2", chartData.packets);
 </script>
+
 </body>
 </html>
