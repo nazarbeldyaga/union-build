@@ -1,12 +1,12 @@
-const { getDailyTransfersCount } = require('../models/transaction');
+const { getDailyTransfersCount } = require('../models/transfers');
 
 async function getDailyTransfersData(req, res) {
     try {
         const chartData = await getDailyTransfersCount();
 
-        // Передаем данные в представление
+
         res.render('index', {
-            chartData: JSON.stringify(chartData) // Данные для графика: ежедневные транзакции
+            chartData: JSON.stringify(chartData)
         });
     } catch (error) {
         res.status(500).render('error', { message: 'Error fetching daily transfers data' });
