@@ -40,7 +40,7 @@ async function getDailyTransfersCount() {
         let hasMore = true;
 
         const daysBack = 30;
-        const orderBy = [{ day_date: 'desc' }];
+        const orderBy = [{ day_date: 'asc' }];
 
         while (hasMore) {
             const response = await client.rawRequest(GET_DAILY_TRANSFERS_COUNT, {

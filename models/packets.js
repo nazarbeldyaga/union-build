@@ -72,7 +72,6 @@ async function getDailyPacketsCount(daysBack = 30) {
             count: parseInt(item.count, 10) // Убеждаемся, что count — число
         }));
 
-        console.log('Daily packets count:', chartData);
         return chartData;
     } catch (error) {
         logApiResponse(null, null, null, error);

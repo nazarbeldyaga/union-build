@@ -4,13 +4,11 @@ function renderTransfersChart(canvasId, chartData) {
         return;
     }
 
-    const reversedData = chartData.slice().reverse();
-
-    const cumulativeData = reversedData.map((item, index) => {
+    const cumulativeData = chartData.map((item, index) => {
         return {
             date: item.date,
             count: item.count,
-            total: reversedData.slice(0, index + 1).reduce((sum, d) => sum + d.count, 0)
+            total: chartData.slice(0, index + 1).reduce((sum, d) => sum + d.count, 0)
         };
     });
 
